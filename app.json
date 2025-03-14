@@ -6,8 +6,8 @@
         "video-extract",
         "pyrogram"
     ],
-    "repository": "https://github.com/nikhilsaini098/Txt-to-video",
-    "success_url": "https://t.me/nklbotbackup",
+    "repository": "https://github.com/nikhilsaini098/Saini-txt",
+    "success_url": "https://instagram.com/nikhil.saini.khe",
     "stack": "heroku-22",
     "env": {
         "API_ID": {
@@ -37,7 +37,7 @@
             "url": "heroku/python"
         },
         {
-            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+            "url": "https://github.com/nikhilsaini098/Saini-txt"
         }
     ]
     }
