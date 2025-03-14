@@ -255,17 +255,17 @@ async def document_or_text_handler(bot: Client, m: Message):
         await m.delete()
         file_name, ext = os.path.splitext(os.path.basename(x))
         try:    
-        with open(x, "r") as f:
-            content = f.read()
-        content = content.split("\n")
-        links = []
-        for i in content:
-            links.append(i.split("://", 1))
-        os.remove(x)
-    except:
-        await m.reply_text("Invalid file input.")
-        os.remove(x)
-        return
+            with open(x, "r") as f:
+                content = f.read()
+            content = content.split("\n")
+            links = []
+            for i in content:
+                links.append(i.split("://", 1))
+            os.remove(x)
+        except:
+            await m.reply_text("Invalid file input.")
+            os.remove(x)
+            return
     elif m.text:
         editable = await m.reply_text(f"**🔹Processing your text message...\n🔁Please wait...⏳**")
         content = m.text.split("\n")
