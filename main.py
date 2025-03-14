@@ -262,7 +262,6 @@ async def document_or_text_handler(bot: Client, m: Message):
             for i in content:
                 links.append(i.strip())
             os.remove(x)
-            url_prefix = "https://"
         except:
             await m.reply_text("Invalid file input.")
             os.remove(x)
@@ -272,7 +271,6 @@ async def document_or_text_handler(bot: Client, m: Message):
         content = m.text.split("\n")
         for i in content:
             links.append(i.strip())
-        url_prefix = ""
     
     await editable.edit(f"Total 🔗 links found are __**{len(links)}**__\n\nSend From where you want to download initial is **1**")
     input0: Message = await bot.listen(editable.chat.id)
@@ -359,7 +357,7 @@ async def document_or_text_handler(bot: Client, m: Message):
     try:
         for i in range(arg-1, len(links)):
             Vxy = links[i].replace("file/d/", "uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing", "")
-            url = url_prefix + Vxy
+            url = Vxy
             if "visionias" in url:
                 async with ClientSession() as session:
                     async with session.get(url, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'}) as resp:
