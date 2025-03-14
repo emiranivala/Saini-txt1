@@ -242,12 +242,15 @@ async def restart_handler(_, m):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@bot.on_message(filters.command(["saini"]) )
-async def txt_handler(bot: Client, m: Message):
-    editable = await m.reply_text(f"**🔹Hi I am Poweful TXT Downloader📥 Bot.**\n🔹**Send me the TXT file and wait.**")
-    input: Message = await bot.listen(editable.chat.id)
-    x = await input.download()
-    await input.delete(True)
+@bot.on_message(filters.document & filters.private)
+async def document_handler(bot: Client, m: Message):
+    if not m.document.file_name.endswith(".txt"):
+        await m.reply_text("Please upload a valid .txt file.")
+        return
+
+    editable = await m.reply_text(f"**🔹Processing your TXT file...\n🔁Please wait...⏳**")
+    x = await m.download()
+    await m.delete()
     file_name, ext = os.path.splitext(os.path.basename(x))
     credit = f"𝙎𝘼𝙄𝙉𝙄 𝘽𝙊𝙏𝙎"
     token = f"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDEyNjcwMDYuMTgzLCJkYXRhIjp7Il9pZCI6IjY1YzFlZTE1ODZmMTQ4MDAxMjdkOWIxOSIsInVzZXJuYW1lIjoiNjM5NDM4MzAzMCIsImZpcnN0TmFtZSI6IkRlZXBhbnNoIiwibGFzdE5hbWUiOiJNaXNocmEiLCJvcmdhbml6YXRpb24iOnsiX2lkIjoiNWViMzkzZWU5NWZhYjc0NjhhNzlkMTg5Iiwid2Vic2l0ZSI6InBoeXNpY3N3YWxsYWguY29tIiwibmFtZSI6IlBoeXNpY3N3YWxsYWgifSwiZW1haWwiOiJyYWplc2htaXNocmExOTc5MEBnbWFpbC5jb20iLCJyb2xlcyI6WyI1YjI3YmQ5NjU4NDJmOTUwYTc3OGM2ZWYiLCI1Y2M5NWEyZThiZGU0ZDY2ZGU0MDBiMzciXSwiY291bnRyeUdyb3VwIjoiSU4iLCJ0eXBlIjoiVVNFUiJ9LCJpYXQiOjE3NDA2NjIyMDZ9.hDoYcFo9uxxhajHudIZtqgtqd3G8QdNxQSS9qkdjNJg"
