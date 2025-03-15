@@ -243,7 +243,7 @@ async def restart_handler(_, m):
 
 
 @bot.on_message(filters.document & filters.private & filters.file_extension("txt"))
-async def txt_handler(bot: Client, m: Message):
+async def document_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"**🔹Processing your TXT file...\n🔁Please wait...⏳**")
     x = await m.download()
     await m.delete()
