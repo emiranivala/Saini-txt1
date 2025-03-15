@@ -181,7 +181,7 @@ async def start_command(bot: Client, message: Message):
     # Caption for the image
     caption = (
         "🌟 Welcome Boss😸! 🌟\n\n"
-        "➽ I am powerful uploader bot 📥\n\n➽ 𝐔𝐬𝐞 /saini Command To Extract TXT 🗃️ \n\n➽ 𝐔𝐬𝐞 /Stop for **Stop** ⛔ working process \n\n➽ 𝐔𝐬𝐞 /cookies for update YouTube cookies.\n\n➽ 𝐔𝐬𝐞 /logs to see your bot logs.\n\n➽ 𝐌𝐚𝐝𝐞 𝐁𝐲: 𝙎𝘼𝙄𝙉𝙄 𝘽𝙊𝙏𝙎 🦁"
+        "➽ I am powerful uploader bot 📥\n\n➽ To Extract Direct Send link /.txt File🗃️ \n\n➽ 𝐔𝐬𝐞 /Stop for **Stop** ⛔ working process \n\n➽ 𝐔𝐬𝐞 /cookies for update YouTube cookies.\n\n➽ 𝐔𝐬𝐞 /logs to see your bot logs.\n\n➽ 𝐌𝐚𝐝𝐞 𝐁𝐲: 𝙎𝘼𝙄𝙉𝙄 𝘽𝙊𝙏𝙎 🦁"
     )
 
     await asyncio.sleep(1)
@@ -521,16 +521,7 @@ async def link_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"🔹Hi I am Powerful Link Downloader📥 Bot.\n🔹Send me the direct link and wait.")
     input: Message = await bot.listen(editable.chat.id)
     link = input.text
-    file_name, ext = os.path.splitext(os.path.basename(x))
-    try:    
-        link = []
-        link.split("://", 1)
-        os.remove(x)
-    except:
-        await m.reply_text("Invalid link input.")
-        os.remove(x)
-        return
-    
+ 
     await editable.edit("**╭━━━━❰ᴇɴᴛᴇʀ ʀᴇꜱᴏʟᴜᴛɪᴏɴ❱━➣\n┣━━⪼ 🔹sᴇɴᴅ **144** for  144p\n┣━━⪼ 🔹sᴇɴᴅ **240** for  240p\n┣━━⪼ 🔹sᴇɴᴅ **360** for  360p\n┣━━⪼ 🔹sᴇɴᴅ **480** for  480p\n┣━━⪼ 🔹sᴇɴᴅ **720** for  720p\n┣━━⪼ 🔹sᴇɴᴅ **1080** for 1080p\n╰━━⌈⚡[🦋🇸‌🇦‌🇮‌🇳‌🇮‌🦋]⚡⌋━━➣ **")
     input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
@@ -580,7 +571,7 @@ async def link_handler(bot: Client, m: Message):
     arg =1
     try:
             Vxy = link.replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","")
-            url = "https://" + Vxy
+            url = Vxy
             if "visionias" in url:
                 async with ClientSession() as session:
                     async with session.get(url, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Accept-Language': 'en-US,en;q=0.9', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Referer': 'http://www.visionias.in/', 'Sec-Fetch-Dest': 'iframe', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'cross-site', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Linux; Android 12; RMX2121) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36', 'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?1', 'sec-ch-ua-platform': '"Android"',}) as resp:
