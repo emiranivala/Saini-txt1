@@ -242,38 +242,33 @@ async def restart_handler(_, m):
     await m.reply_text("🦅ˢᵗᵒᵖᵖᵉᵈ ᵇᵃᵇʸ💞", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
-@bot.on_message(filters.document & filters.private | filters.text & filters.private)
-async def document_or_text_handler(bot: Client, m: Message):
-    
-    if m.document:
-        if not m.document.file_name.endswith(".txt"):
-            await m.reply_text("Please upload a valid .txt file.")
-            return
 
-        editable = await m.reply_text(f"**🔹Processing your TXT file...\n🔁Please wait...⏳**")
-        x = await m.download()
-        await m.delete()
-        file_name, ext = os.path.splitext(os.path.basename(x))
-        try:    
-            with open(x, "r") as f:
-                content = f.read()
-            content = content.split("\n")
-            links = []
-            for i in content:
-                links.append(i.split("://", 1))
-            os.remove(x)
-        except:
-            await m.reply_text("Invalid file input.")
-            os.remove(x)
-            return
-    elif m.text:
-        editable = await m.reply_text(f"**🔹Processing your text message...\n🔁Please wait...⏳**")
-        content = m.text.split("\n")
+@bot.on_message(filters.document & filters.private)
+async def document_handler(bot: Client, m: Message):
+    if not m.document.file_name.endswith(".txt"):
+        await m.reply_text("Please upload a valid .txt file.")
+        return
+
+    editable = await m.reply_text(f"🔹Processing your TXT file...\n🔁Please wait...⏳")
+    x = await m.download()
+    await m.delete()
+    file_name, ext = os.path.splitext(os.path.basename(x))
+    credit = f"𝙎𝘼𝙄𝙉𝙄 𝘽𝙊𝙏𝙎"
+    token = f"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDEyNjcwMDYuMTgzLCJkYXRhIjp7Il9pZCI6IjY1YzFlZTE1ODZmMTQ4MDAxMjdkOWIxOSIsInVzZXJuYW1lIjoiNjM5NDM4MzAzMCIsImZpcnN0TmFtZSI6IkRlZXBhbnNoIiwib[...]
+    try:    
+        with open(x, "r") as f:
+            content = f.read()
+        content = content.split("\n")
         links = []
         for i in content:
-            links.append(i.strip())
-    
-    await editable.edit(f"Total 🔗 links found are __**{len(links)}**__\n\nSend From where you want to download initial is **1**")
+            links.append(i.split("://", 1))
+        os.remove(x)
+    except:
+        await m.reply_text("Invalid file input.")
+        os.remove(x)
+        return
+   
+    await editable.edit(f"Total 🔗 links found are {len(links)}\n\nSend From where you want to download initial is 1")
     input0: Message = await bot.listen(editable.chat.id)
     raw_text = input0.text
     await input0.delete(True)
@@ -281,12 +276,12 @@ async def document_or_text_handler(bot: Client, m: Message):
         arg = int(raw_text)
     except:
         arg = 1
-    await editable.edit("**Enter Your Batch Name**\n\n**Send __1__ for use default.**")
+    await editable.edit("Enter Your Batch Name\n\nSend 1 for use default.")
     input1: Message = await bot.listen(editable.chat.id)
     raw_text0 = input1.text
     await input1.delete(True)
     if raw_text0 == '1':
-        b_name = file_name if m.document else "Default_Batch"
+        b_name = file_name
     else:
         b_name = raw_text0
 
