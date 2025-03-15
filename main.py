@@ -520,8 +520,8 @@ async def document_handler(bot: Client, m: Message):
 async def link_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"🔹Hi I am Powerful Link Downloader📥 Bot.\n🔹Send me the direct link and wait.")
     input: Message = await bot.listen(editable.chat.id)
-    link_part = input.text
-    link = link_part.split("://", 1)
+    link = input.text
+    link = link.split("://", 1)
     await input.delete(True)
     
     await editable.edit("**╭━━━━❰ᴇɴᴛᴇʀ ʀᴇꜱᴏʟᴜᴛɪᴏɴ❱━➣\n┣━━⪼ 🔹sᴇɴᴅ **144** for  144p\n┣━━⪼ 🔹sᴇɴᴅ **240** for  240p\n┣━━⪼ 🔹sᴇɴᴅ **360** for  360p\n┣━━⪼ 🔹sᴇɴᴅ **480** for  480p\n┣━━⪼ 🔹sᴇɴᴅ **720** for  720p\n┣━━⪼ 🔹sᴇɴᴅ **1080** for 1080p\n╰━━⌈⚡[🦋🇸‌🇦‌🇮‌🇳‌🇮‌🦋]⚡⌋━━➣ **")
