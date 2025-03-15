@@ -520,9 +520,9 @@ async def document_handler(bot: Client, m: Message):
 async def link_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"🔹Hi I am Powerful Link Downloader📥 Bot.\n🔹Send me the direct link and wait.")
     input: Message = await bot.listen(editable.chat.id)
-    link = input.text
+    links = input.text
 
-    link_parts = link.split("://")
+    link_parts = links.split("://")
     if len(link_parts) > 1:
         link = link_parts[1]
     else:
@@ -602,8 +602,8 @@ async def link_handler(bot: Client, m: Message):
              vid_id =  url.split("/")[-2]
              url =  f"https://madxapi-d0cbf6ac738c.herokuapp.com/{vid_id}/master.m3u8?token={PW}"
 
-            name1 = link.replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
-            name = f'{name1[:60]} 𝙎𝘼𝙄𝙉𝙄 𝘽𝙊𝙏𝙎'
+            name1 = links.replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
+            name = f'{name1[:30]} 𝙎𝘼𝙄𝙉𝙄 𝘽𝙊𝙏𝙎'
             
             if 'cpvod.testbook.com' in url:
                url = requests.get(f'https://mon-key-3612a8154345.herokuapp.com/get_keys?url=https://cpvod.testbook.com/65f02cbd734b790a42d7317f/playlist.m3u8', headers={'x-access-token': 'eyJjb3Vyc2VJZCI6IjQ1NjY4NyIsInR1dG9ySWQiOm51bGwsIm9yZ0lkIjo0ODA2MTksImNhdGVnb3J5SWQiOm51bGx9r'}).json()['url']
