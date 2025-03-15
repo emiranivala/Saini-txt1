@@ -242,7 +242,7 @@ async def restart_handler(_, m):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@bot.on_message(filters.document & filters.private & filters.file_extension("txt"))
+@bot.on_message(filters.document & filters.private)
 async def document_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"**🔹Processing your TXT file...\n🔁Please wait...⏳**")
     x = await m.download()
